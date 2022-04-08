@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace NewTask.Core.Models
 {
-    public class _Nota
+    internal class _Nota
     {
         public int NotaId { get; set; }
         public int OpusId { get; set; }
+        public int? ParentNotaId { get; set; }
         public string Title { get; set; } = string.Empty;
         public string Text { get; set; } = string.Empty;
     }

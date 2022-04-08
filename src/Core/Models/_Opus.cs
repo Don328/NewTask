@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NewTask.Core.Models
 {
-    public class _Opus
+    internal class _Opus
     {
         public int OpusId { get; set; }
         public string Title { get; set; } = string.Empty;
