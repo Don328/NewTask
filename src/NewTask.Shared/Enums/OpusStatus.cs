@@ -8,9 +8,9 @@ namespace NewTask.Shared.Enums
 {
     public enum OpusStatus
     {
-        New,
-        Active,
-        Pending,
-        Completed
+        Novus,
+        Accedent,
+        Pendente,
+        Completum
     }
 }

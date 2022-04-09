@@ -26,6 +26,7 @@ namespace NewTask.Core.Data.Fixtures
         {
             return (from n in inMem.Notas
                     where n.OpusId == opusId
+                    && n.ParentNotaId == null
                     select n).ToList();
         }
 
@@ -54,17 +55,47 @@ namespace NewTask.Core.Data.Fixtures
 
         internal Result Remove(int notaId)
         {
+
             var nota = (from n in inMem.Notas
                         where n.NotaId == notaId
                         select n).FirstOrDefault();
             if (nota != null)
             {
+                RemoveChildNotas(notaId);
                 inMem.Remove(nota);
                 inMem.SaveChanges();
                 return Result.Success;
             }
 
             return Result.Fail;
+        }
+
+        internal void RemoveOpusNotas(int opusId)
+        {
+            var notas = (from n in inMem.Notas
+                         where n.OpusId == opusId
+                         select n).ToList();
+
+            foreach(var nota in notas)
+            {
+                RemoveChildNotas(nota.NotaId);
+                inMem.Notas.Remove(nota);
+            }
+
+            inMem.SaveChanges();
+        }
+
+        private void RemoveChildNotas(int notaId)
+        {
+            var notas = (from n in inMem.Notas
+                         where n.ParentNotaId == notaId
+                         select n).ToList();
+            
+            foreach (var nota in notas)
+            {
+                RemoveChildNotas(nota.NotaId);
+                inMem.Remove(nota);
+            }
         }
     }
 }

@@ -23,4 +23,8 @@
     <ProjectReference Include="..\NewTask.Shared\NewTask.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\Interfaces\" />
+  </ItemGroup>
+
 </Project>

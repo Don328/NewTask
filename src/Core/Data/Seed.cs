@@ -10,56 +10,39 @@ namespace NewTask.Core.Data
 {
     internal class Seed
     {
-        private readonly InMemDbContext inMem;
-
-        internal Seed(InMemDbContext inMem)
-        {
-            this.inMem = inMem;
-
-            if (!inMem.Opera.Any())
-            {
-                SeedOpera();
-            }
-
-            if (!inMem.Notas.Any())
-            {
-                SeedNotas();
-            }
-        }
-
-        private void SeedOpera()
+        internal List<_Opus> SeedOpera()
         {
             var opera = new List<_Opus>();
 
             var opus1 = CreateOpus("Task 1");
-            opus1.Status = OpusStatus.New;
+            opus1.Status = OpusStatus.Novus;
 
             var opus2 = CreateOpus("Task 2");
-            opus2.Status = OpusStatus.Active;
+            opus2.Status = OpusStatus.Accedent;
 
             var opus3 = CreateOpus("Task 3");
-            opus3.Status = OpusStatus.Active;
+            opus3.Status = OpusStatus.Accedent;
 
             var opus4 = CreateOpus("Task 4");
-            opus4.Status = OpusStatus.Pending;
+            opus4.Status = OpusStatus.Pendente;
 
             var opus5 = CreateOpus("Task 5");
-            opus5.Status = OpusStatus.Completed;
+            opus5.Status = OpusStatus.Completum;
 
             var opus6 = CreateOpus("Task 6");
-            opus6.Status = OpusStatus.Pending;
+            opus6.Status = OpusStatus.Pendente;
 
             var opus7 = CreateOpus("Task 7");
-            opus7.Status = OpusStatus.Active;
+            opus7.Status = OpusStatus.Accedent;
 
             var opus8 = CreateOpus("Task 8");
-            opus8.Status = OpusStatus.New;
+            opus8.Status = OpusStatus.Novus;
 
             var opus9 = CreateOpus("Task 9");
-            opus9.Status = OpusStatus.Completed;
+            opus9.Status = OpusStatus.Completum;
 
             var opus10 = CreateOpus("Task 10");
-            opus10.Status = OpusStatus.Active;
+            opus10.Status = OpusStatus.Accedent;
 
             opera.Add(opus1);
             opera.Add(opus2);
@@ -72,7 +55,7 @@ namespace NewTask.Core.Data
             opera.Add(opus9);
             opera.Add(opus10);
 
-            inMem.Opera.AddRange(opera);
+            return opera;
         }
 
         private _Opus CreateOpus(string title)
@@ -80,13 +63,13 @@ namespace NewTask.Core.Data
             var opus = new _Opus
             {
                 Title = title,
-                Status = OpusStatus.New
+                Status = OpusStatus.Novus
             };
 
             return opus;
         }
 
-        private void SeedNotas()
+        public List<_Nota> SeedNotas()
         {
             var notas = new List<_Nota>();
 
@@ -163,7 +146,7 @@ namespace NewTask.Core.Data
             notas.Add(nota11);
             notas.Add(nota12);
 
-            inMem.Notas.AddRange(notas);
+            return notas;
         }
 
         private _Nota CreateNota(
