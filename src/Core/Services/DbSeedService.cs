@@ -19,6 +19,7 @@ namespace NewTask.Core.Services
         {
             this.inMemDb = inMemDb;
             this.seed = seed;
+            ExecuteAsync(new CancellationToken()).Wait();
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
